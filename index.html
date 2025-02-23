@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangliste</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="https://widget.football.ch/Widgets.aspx?v-653457/t-49859/a-tra/" id="rankingFrame"></iframe>
+
+    <script>
+        document.getElementById("rankingFrame").onload = function () {
+            let frame = document.getElementById("rankingFrame").contentWindow.document;
+
+            // Elemente verstecken
+            let removeElements = [
+                ".header",  // Falls eine Header-Klasse existiert
+                ".footer",  // Falls eine Footer-Klasse existiert
+                ".branding", // Falls Sponsoren-Banner diese Klasse haben
+                "#top-banner" // Falls eine ID existiert
+            ];
+
+            removeElements.forEach(selector => {
+                let element = frame.querySelector(selector);
+                if (element) {
+                    element.style.display = "none";
+                }
+            });
+        };
+    </script>
+</body>
+</html>
