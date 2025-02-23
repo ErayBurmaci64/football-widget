@@ -1,53 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rangliste</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: #000000; /* Hintergrundfarbe ändern */
-        }
-        iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
-        @media (max-width: 600px) {
-            iframe {
-                height: 90vh; /* Weniger Höhe auf kleinen Bildschirmen */
-            }
-        }
-        img[src*="redfc"], /* Versteckt das RED FC Logo */
-        img[src*="uhlsport"], /* Versteckt das Uhlsport Logo */
-        .sponsor-container,  /* Falls sie in einem div sind */
-        .ads, /* Falls es Werbebanner sind */
-        .branding {
-            display: none !important;
-        }
-        img[src*="redfc"],
-        img[src*="uhlsport"],
-        img[src*="hoval"] {
-            visibility: hidden !important;
-            opacity: 0;
-            height: 0;
-        }
-    </style>
-</head>
 <body>
     <iframe src="https://widget.football.ch/Widgets.aspx?v-653457/t-49859/a-tra/" id="rankingFrame"></iframe>
-
-    <script>
-        document.getElementById("rankingFrame").onload = function () {
-            let frame = document.getElementById("rankingFrame").contentWindow.document;
-        
-            setTimeout(() => {
-                let sponsors = frame.querySelectorAll("img[src*='redfc'], img[src*='uhlsport'], .sponsor-container, .ads, .branding");
-                sponsors.forEach(el => el.remove()); // Entfernt Sponsoren
-            }, 2000); // 2 Sekunden warten, bis die Seite geladen ist
-        };
-    </script>
 </body>
 </html>
