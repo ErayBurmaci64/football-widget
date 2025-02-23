@@ -22,6 +22,13 @@
                 height: 90vh; /* Weniger Höhe auf kleinen Bildschirmen */
             }
         }
+        img[src*="redfc"], /* Versteckt das RED FC Logo */
+        img[src*="uhlsport"], /* Versteckt das Uhlsport Logo */
+        .sponsor-container,  /* Falls sie in einem div sind */
+        .ads, /* Falls es Werbebanner sind */
+        .branding {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -30,29 +37,11 @@
     <script>
         document.getElementById("rankingFrame").onload = function () {
             let frame = document.getElementById("rankingFrame").contentWindow.document;
-
+        
             setTimeout(() => {
-                let removeElements = [
-                    ".header",  // Kopfzeile
-                    ".footer",  // Fußzeile
-                    ".ads",     // Werbung
-                    "#sidebar"  // Seitenleiste
-            ];
-            
-            // Elemente verstecken
-            let removeElements = [
-                ".header",  // Falls eine Header-Klasse existiert
-                ".footer",  // Falls eine Footer-Klasse existiert
-                ".branding", // Falls Sponsoren-Banner diese Klasse haben
-                "#top-banner" // Falls eine ID existiert
-            ];
-
-            removeElements.forEach(selector => {
-                let element = frame.querySelector(selector);
-                if (element) {
-                    element.style.display = "none";
-                }
-            });
+                let sponsors = frame.querySelectorAll("img[src*='redfc'], img[src*='uhlsport'], .sponsor-container, .ads, .branding");
+                sponsors.forEach(el => el.remove()); // Entfernt Sponsoren
+            }, 2000); // 2 Sekunden warten, bis die Seite geladen ist
         };
     </script>
 </body>
