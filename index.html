@@ -8,11 +8,19 @@
         body {
             margin: 0;
             overflow: hidden;
+            background-color: #f4f4f4; /* Hintergrundfarbe ändern */
+            font-family: Arial, sans-serif; /* Schriftart ändern */
         }
         iframe {
-            width: 100vw;
+            width: 100%;
             height: 100vh;
             border: none;
+            filter: brightness(0.9); /* Helligkeit anpassen */
+        }
+        @media (max-width: 600px) {
+            iframe {
+                height: 90vh; /* Weniger Höhe auf kleinen Bildschirmen */
+            }
         }
     </style>
 </head>
@@ -23,6 +31,14 @@
         document.getElementById("rankingFrame").onload = function () {
             let frame = document.getElementById("rankingFrame").contentWindow.document;
 
+            setTimeout(() => {
+                let removeElements = [
+                    ".header",  // Kopfzeile
+                    ".footer",  // Fußzeile
+                    ".ads",     // Werbung
+                    "#sidebar"  // Seitenleiste
+            ];
+            
             // Elemente verstecken
             let removeElements = [
                 ".header",  // Falls eine Header-Klasse existiert
